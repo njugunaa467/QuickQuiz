@@ -1,0 +1,13 @@
+{
+  "name": "quickquiz-web",
+  "version": "1.0.0",
+  "description": "QuickQuiz – a lightweight browser-based quiz game about science, religion, history, chemistry, geography and more.",
+  "private": true,
+  "scripts": {
+    "start": "npx serve .",
+    "preview": "npx serve ."
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}
+

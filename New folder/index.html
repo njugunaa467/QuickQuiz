@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>QuickQuiz – World & Earth Trivia</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="app-gradient"></div>
+    <div class="app-shell">
+      <header class="app-header">
+        <div class="app-title-block">
+          <h1 class="app-title">QuickQuiz</h1>
+          <p class="app-subtitle" id="app-subtitle">
+            Test your knowledge of science, history, religion, chemistry, geography, and more.
+          </p>
+        </div>
+        <div class="app-header-side">
+          <div class="user-greeting" id="user-greeting">
+            <span class="user-greeting-label">Welcome, explorer</span>
+          </div>
+          <div class="header-actions">
+            <button id="open-dashboard" class="ghost-button header-button" type="button">
+              Dashboard
+            </button>
+            <button id="sound-toggle" class="ghost-button header-button" type="button">
+              🔈 Sound on
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <main class="app-main">
+        <!-- Category selection / home screen -->
+        <section id="screen-category" class="screen screen--active">
+          <div class="card card--glass">
+            <h2 id="category-heading">Select a category</h2>
+            <p class="card-helper">
+              Choose what you want to learn and answer <strong>10 mixed questions</strong>. New game, new questions.
+            </p>
+
+            <div id="user-setup" class="user-setup">
+              <h3>Who’s playing today?</h3>
+              <p class="user-setup-helper">
+                Enter your name so QuickQuiz can greet you and keep track of your scores on this device.
+              </p>
+              <form id="user-setup-form" class="user-setup-form">
+                <input
+                  id="user-name-input"
+                  class="user-name-input"
+                  type="text"
+                  name="userName"
+                  autocomplete="name"
+                  maxlength="40"
+                  placeholder="Type your name"
+                  required
+                />
+                <button id="user-name-save" class="primary-button" type="submit">
+                  Save name
+                </button>
+              </form>
+            </div>
+
+            <div class="level-selector">
+              <div class="level-selector-header">
+                <span class="level-selector-label">Learning level</span>
+                <span class="level-selector-hint">Start with Beginner. Higher levels unlock as you pass quizzes.</span>
+              </div>
+              <div id="level-selector" class="level-selector-buttons">
+                <!-- Level buttons added by app.js -->
+              </div>
+            </div>
+
+            <div class="category-grid" id="category-grid">
+              <!-- Filled by JS from questions.js -->
+            </div>
+
+            <div class="category-footer">
+              <p class="hint">
+                Tip: You can replay the same category – we’ll shuffle in different questions each time.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Quiz screen -->
+        <section id="screen-quiz" class="screen">
+          <div class="card card--glass">
+            <header class="quiz-header">
+              <button id="back-to-category" class="ghost-button" type="button">
+                ← Categories
+              </button>
+              <div class="quiz-header-main">
+                <h2 id="quiz-category-label">Category</h2>
+                <p id="quiz-level-label" class="quiz-level-label">Beginner level</p>
+                <p id="quiz-progress-label" class="quiz-progress-label">Question 1 of 10</p>
+              </div>
+            </header>
+
+            <div class="quiz-meter">
+              <div class="quiz-meter-track">
+                <div id="quiz-meter-fill" class="quiz-meter-fill"></div>
+              </div>
+              <span id="quiz-score-mini" class="quiz-score-mini">Score: 0 / 0</span>
+            </div>
+
+            <div class="quiz-body">
+              <div class="question-meta">
+                <span id="question-difficulty" class="tag-pill"></span>
+              </div>
+              <h3 id="question-text" class="question-text"></h3>
+
+              <div id="answers-list" class="answers-list">
+                <!-- Answer buttons go here -->
+              </div>
+
+              <div id="answer-feedback" class="answer-feedback"></div>
+            </div>
+
+            <footer class="quiz-footer">
+              <button id="next-question" class="primary-button" type="button" disabled>
+                Next question
+              </button>
+            </footer>
+          </div>
+        </section>
+
+        <!-- Results screen -->
+        <section id="screen-results" class="screen">
+          <div class="card card--glass card--results">
+            <h2>Your results</h2>
+            <p id="results-category-label" class="results-category-label"></p>
+
+            <div class="results-score-block">
+              <div class="results-score-main">
+                <span id="results-score" class="results-score"></span>
+                <span id="results-percent" class="results-percent"></span>
+              </div>
+              <p id="results-message" class="results-message"></p>
+            </div>
+
+            <div class="results-summary">
+              <p id="results-correct-count"></p>
+              <p id="results-time"></p>
+            </div>
+
+            <div id="results-breakdown" class="results-breakdown">
+              <!-- Filled by JS with a short per-question breakdown -->
+            </div>
+
+            <div class="results-actions">
+              <button id="play-again-same" class="primary-button" type="button">
+                Play again (same category)
+              </button>
+              <button id="play-again-new" class="secondary-button" type="button">
+                Choose another category
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <!-- Dashboard screen -->
+        <section id="screen-dashboard" class="screen">
+          <div class="card card--glass card--results">
+            <header class="dashboard-header">
+              <div>
+                <h2>Your quiz dashboard</h2>
+                <p id="dashboard-subtitle" class="dashboard-subtitle">
+                  Track your progress across all categories on this device.
+                </p>
+              </div>
+              <button id="close-dashboard" class="ghost-button" type="button">
+                ← Back
+              </button>
+            </header>
+
+            <div class="dashboard-summary" id="dashboard-summary">
+              <!-- Summary tiles injected by JS -->
+            </div>
+
+            <div class="dashboard-history">
+              <h3 class="dashboard-history-title">Recent games</h3>
+              <div id="dashboard-history-list" class="dashboard-history-list">
+                <!-- History items injected by JS -->
+              </div>
+              <p id="dashboard-history-empty" class="dashboard-history-empty">
+                No games yet. Play a quiz to see your stats here.
+              </p>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer class="app-footer">
+        <span>QuickQuiz · Made for fast, fun learning about our world.</span>
+      </footer>
+    </div>
+
+    <script src="questions.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
+
